@@ -1,0 +1,27 @@
+<table class="table table-bordered m-0">
+    <thead>
+        <tr>
+            <th scope="col" class="w-25">User</th>
+            <th scope="col" class="w-75">Post</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let post of messagePosts">
+            <td>
+                <div>{{post.name}}</div>
+                <div>
+                    <a class="custom-link" (click)="goToPostUserwebSite(post.website)">{{post.website}}</a>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <a class="custom-link" (click)="goToPostPage(post.id,post.userId)">{{post.title}}</a>
+                </div>
+                <div>{{post.body}}</div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<app-pagination [totalItems]="postsLength" [itemsPerPage]="postsPerPage" [currentPage]="currentPage"
+    (pageChange)="onPageChange($event)">
+</app-pagination>

@@ -1,0 +1,17 @@
+<section class="d-flex justify-content-center align-items-center">
+    <div class="w-25">
+        <div>
+            <form [formGroup]="userForm">
+                <div class="form-group">
+                    <label for="Username">Username</label>
+                    <input type="text" class="form-control mt-1" id="Username" formControlName="username" tabindex="1"
+                        autocomplete="off" autofocus required>
+                    <small id="UsernameHelper" class="form-text text-muted" *ngIf="!userForm.value.username || errorMessage">
+                        {{errorMessage}}</small>
+                </div>
+                <button class="btn btn-primary float-right mt-2" [disabled]="!userForm.valid" (click)=login()>Log
+                    In</button>
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,40 @@
+<section class="d-flex justify-content-center align-items-center">
+    <div class="w-50">
+        <div *ngIf="notActiveUserPost">
+            <h2 class="text-danger">You don't have permission for this action</h2>
+        </div>
+        <div>
+            <form [formGroup]="postForm">
+                <div class="form-group my-2">
+                    <label for="Title">Title</label>
+                    <input type="text" class="form-control mt-1" id="Title" [appInputRestriction]="200"
+                        formControlName="title" tabindex="1" autocomplete="off" autofocus required
+                        (change)="isDataChanged()">
+                    <div class="text-danger text-end">{{postForm.value.title.length}}/200</div>
+                    <small id="TitleHelper" class="form-text text-muted" *ngIf="!postForm.value.title">
+                        {{errorMessage}}</small>
+                </div>
+                <div class="form-group my-2">
+                    <label for="Message">Message</label>
+                    <textarea type="text" class="form-control mt-1" id="Message" [appInputRestriction]="2000"
+                        (change)="isDataChanged()" formControlName="message" tabindex="2" rows="4" required></textarea>
+                    <div class="text-danger text-end">{{postForm.value.message.length}}/2000</div>
+                    <small id="MessageHelper" class="form-text text-muted" *ngIf="!postForm.value.message">
+                        {{errorMessage}}</small>
+                </div>
+                <div class="d-flex justify-content-between align-items-center" *ngIf="!notActiveUserPost">
+                    <div>
+                        <button class="btn btn-danger float-right mt-2" *ngIf="id!==0"
+                            (click)=deletePost()>Delete</button>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary float-right mt-2 mx-2" [disabled]="!postForm.valid"
+                            (click)=createPost()>Save</button>
+                        <button class="btn btn-default float-right mt-2" [routerLink]="['/Home']">Cancel</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

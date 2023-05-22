@@ -1,0 +1,21 @@
+<div class="container-fluid m-0 p-0">
+    <header>
+        <nav class="navbar navbar-dark bg-dark px-4">
+            <div>
+                <a class="navbar-brand ml-5">{{currentPageName | async}}</a>
+                <a class="custom-link" (click)="goToHomePage()" *ngIf="(currentPageName | async) === 'Posts'">Go to Home Page</a>
+            </div>
+            <div>
+                <span class="text-secondary mx-2"><i>{{getUserStatusText}}</i></span>
+                <button class="btn btn-primary mx-2 my-sm-0" [routerLink]="['/Login']" *ngIf="!isLogged">Login</button>
+                <button class="btn btn-primary mx-2 my-sm-0" [routerLink]="['/Posts/0']" *ngIf="isLogged">
+                    New Post
+                </button>
+                <button class="btn btn-outline-primary mx-2 my-sm-0" *ngIf="isLogged" (click)=logOut()>Log out</button>
+            </div>
+        </nav>
+    </header>
+    <div class="m-2 p-5">
+        <router-outlet></router-outlet>
+    </div>
+</div>
